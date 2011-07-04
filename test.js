@@ -8,7 +8,7 @@ res.write('hello again');
 res.end(JSON.stringify(req.cookies)); });
 var io = require('socket.io').listen(server);
 
-server.listen(8080);
+server.listen(80);
 
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
