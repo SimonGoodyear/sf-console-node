@@ -1,5 +1,5 @@
 var connect = require('connect');
-var server = connect.createServer( connect.cookieParser(), function(req,res){
+var server = connect.createServer( connect.cookieParser(), connect.static( '/client.html'), function(req,res){
 res.writeHead( 200, {
     'Set-Cookie': 'mycookie=test',
     'Content-Type': 'text/plain'

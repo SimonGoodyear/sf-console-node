@@ -1,6 +1,6 @@
-<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+<script src="http://simple-autumn-149.herokuapp.com/socket.io/socket.io.js"></script>
 <script>
-  var socket = io.connect('http://localhost:8080');
+  var socket = io.connect('http://simple-autumn-149.herokuapp.com');
   socket.on('news', function (data) {
     console.log(data);
     socket.emit('my other event', { my: 'data' });
