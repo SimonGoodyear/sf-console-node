@@ -10,7 +10,8 @@ var io = require('socket.io').listen(server);
 io.configure('production', function(){
 
   io.set('transports', [
-   	'htmlfile'
+   	'flashsocket'
+  , 'htmlfile'
   , 'xhr-polling'
   , 'jsonp-polling'
   ]);
