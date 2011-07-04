@@ -7,6 +7,14 @@ res.writeHead( 200, {
 res.write('hello again ' + process.env.PORT);
 res.end(JSON.stringify(req.cookies)); });
 var io = require('socket.io').listen(server);
+io.configure('production', function(){
+
+  io.set('transports', [
+   	'htmlfile'
+  , 'xhr-polling'
+  , 'jsonp-polling'
+  ]);
+});
 
 server.listen(process.env.PORT);
 
