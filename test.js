@@ -52,22 +52,22 @@ function HttpHandler(req,res){
         req.on('end', function() {
             var xml = chunks.join(''), result;
             try { 
-	            clean = xml.replace(/<soapenv:Envelope /, '<soapenvEnvelope ')
-							.replace(/<\/soapenv:Envelope>/, '</soapenvEnvelope>')
-							.replace(/ xmlns:soapenv="/, ' xmlnssoapenv="')
-	            			.replace(/ xmlns:xsd="/, ' xmlnsxsd="')
-	            			.replace(/ xmlns:xsi="/, ' xmlnsxsi="')
-	            			.replace(/ xsi:type="/, ' xsitype="') 
-	            			.replace(/ xmlns:sf="/, ' xmlnssf="')
-	            			.replace(/ xsi:nil="/, ' xsinil="')	            			
-	            			.replace(/<soapenv:Body>/, '<soapenvBody>')
-	            			.replace(/<sf:Id>/, '<sfId>')
-	            			.replace(/<sf:Message__c>/, '<sfMessage__c>')
-	            			.replace(/<sf:Updated__c>/, '<sfUpdated__c>')	            			.replace(/<\/soapenv:Body>/, '</soapenvBody>')
-	            			.replace(/<\/sf:Id>/, '</sfId>')
-	            			.replace(/<\/sf:Message__c>/, '</sfMessage__c>')
-	            			.replace(/<\/sf:Updated__c>/, '</sfUpdated__c>')
-	            			.replace(/<?xml version="1.0" encoding="UTF-8"?>/,'');
+	            clean = xml.replace(/<soapenv:Envelope /g, '<soapenvEnvelope ')
+							.replace(/<\/soapenv:Envelope>/g, '</soapenvEnvelope>')
+							.replace(/ xmlns:soapenv="/g, ' xmlnssoapenv="')
+	            			.replace(/ xmlns:xsd="/g, ' xmlnsxsd="')
+	            			.replace(/ xmlns:xsi="/g, ' xmlnsxsi="')
+	            			.replace(/ xsi:type="/g, ' xsitype="') 
+	            			.replace(/ xmlns:sf="/g, ' xmlnssf="')
+	            			.replace(/ xsi:nil="/g, ' xsinil="')	            			
+	            			.replace(/<soapenv:Body>/g, '<soapenvBody>')
+	            			.replace(/<sf:Id>/g, '<sfId>')
+	            			.replace(/<sf:Message__c>/g, '<sfMessage__c>')
+	            			.replace(/<sf:Updated__c>/g, '<sfUpdated__c>')	            			.replace(/<\/soapenv:Body>/g, '</soapenvBody>')
+	            			.replace(/<\/sf:Id>/g, '</sfId>')
+	            			.replace(/<\/sf:Message__c>/g, '</sfMessage__c>')
+	            			.replace(/<\/sf:Updated__c>/g, '</sfUpdated__c>')
+	            			.replace(/<?xml version="1.0" encoding="UTF-8"?>/g,'');
 	            	console.log('************ ' + clean );
                 ///result = parser.toJson2(clean);
                /* parser.addListener('end', function(result){
