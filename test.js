@@ -62,10 +62,10 @@ function HttpHandler(req,res){
 	            			.replace(' xsi:nil="', ' xsinil="')	            			
 	            			.replace('<soapenv:Body>', '<soapenvBody>')
 	            			.replace('<sf:Id>', '<sfId>')
-	            			.replace('<sf:Message__c>', '<sfMessage__c>')
+	            			.replace(/<sf:Message__c>/g, '<sfMessage__c>')
 	            			.replace('<sf:Updated__c>', '<sfUpdated__c>')	            			.replace('</soapenv:Body>', '</soapenvBody>')
 	            			.replace('</sf:Id>', '</sfId>')
-	            			.replace('</sf:Message__c>', '</sfMessage__c>')
+	            			.replace(/</sf:Message__c>/g, '</sfMessage__c>')
 	            			.replace('</sf:Updated__c>', '</sfUpdated__c>')
 	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','');
 	            			
@@ -74,7 +74,7 @@ function HttpHandler(req,res){
                 		//console.log(sys.inspect(result));
                 		//console.log(result.soapenvBody);
                 		//console.log(result.soapenvBody.notifications);
-                		console.log(result.soapenv:Body.notifications.OrganizationId);
+                		console.log(result.soapenvBody.notifications.OrganizationId);
                 		console.log(result.soapenvBody.notifications);
                 		
                 		if(result.soapenvBody.notifications.Notification instanceof Array){
