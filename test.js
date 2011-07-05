@@ -61,6 +61,7 @@ function HttpHandler(req,res){
             catch (err) {
                 result = err.stack;
             }
+            console.log(result);
             res.write(result);
             res.end();
         });
