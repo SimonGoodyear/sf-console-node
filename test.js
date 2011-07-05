@@ -71,13 +71,14 @@ function HttpHandler(req,res){
 	            			
                 ///result = parser.toJson2(clean);
                 parser.addListener('end', function(result){
-                		//console.log(sys.inspect(result));
+                		console.log(sys.inspect(result));
                 		//console.log(result.soapenvBody);
                 		//console.log(result.soapenvBody.notifications);
                 		console.log(result.soapenvBody.notifications.OrganizationId);
                 		//console.log(result.soapenvBody.notifications);
                 		
                 		if(result.soapenvBody.notifications.Notification instanceof Array){
+                			console.log(result.soapenvBody.notifications.Notification.length);
                 			for( i = 0; i < result.soapenvBody.notifications.Notification.length; i++)
                 				console.log(result.soapenvBody.notifications.Notification[i].sObject.sfMessage__c);
                 		} else{
