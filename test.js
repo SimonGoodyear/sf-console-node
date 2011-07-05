@@ -51,7 +51,7 @@ function HttpHandler(req,res){
         })
         req.on('end', function() {
             var xml = chunks.join(''), result;
-            try {
+            try { xml ='<sf:Message__c>ss</sf:Message__c>';
 	            clean = xml.replace('<soapenv:Envelope ', '<soapenvEnvelope ')
 							.replace('</soapenv:Envelope>', '</soapenvEnvelope>')
 							.replace(' xmlns:soapenv="', ' xmlnssoapenv="')
