@@ -31,6 +31,6 @@ function HttpHandler(req,res){
     	'Content-Type': 'text/plain'
   	});
 
-	res.end(req.body);	
-
+	console.log(req.body);	
+	res.end();
 }
