@@ -27,7 +27,7 @@ io.sockets.on('connection', function (socket) {
 
 var parser = new xml2js.Parser();
 parser.addListener('end', function(result){
-                		
+                		console.log(result.soapenvBody.notifications.OrganizationId);
                 		if(result.soapenvBody.notifications.Notification instanceof Array){
                 			for( i = 0; i < result.soapenvBody.notifications.Notification.length; i++){
                 				console.log(result.soapenvBody.notifications.Notification[i].sObject.sfMessage__c);
@@ -79,9 +79,7 @@ function HttpHandler(req,res){
 	            			.replace(/<\/sf:Message__c>/g, '</sfMessage__c>')
 	            			.replace(/<\/sf:Updated__c>/g, '</sfUpdated__c>')
 	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','').trim();
-	            	//console.log(clean);
-                
-            	
+
                 parser.parseString(clean);
                 }
             catch (err) {
