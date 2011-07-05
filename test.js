@@ -49,7 +49,7 @@ function HttpHandler(req,res){
         req.on('end', function() {
             var xml = chunks.join(''), result;
             try {
-	            result = xml.replace('<soapenv:Envelope ', '<soapenvEnvelope ')
+	            clean = xml.replace('<soapenv:Envelope ', '<soapenvEnvelope ')
 							.replace('</soapenv:Envelope>', '</soapenvEnvelope>')
 							.replace(' xmlns:soapenv="', ' xmlnssoapenv="')
 	            			.replace(' xmlns:xsd="', ' xmlnsxsd="')
@@ -66,8 +66,8 @@ function HttpHandler(req,res){
 	            			.replace('</sf:Updated__c>', '</sfUpdated__c>')
 	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','');
 	            			
-                result = parser.toJson(result);
-                obj = parser.toJson(result, {object: true});
+                result = parser.toJson(clean);
+                obj = parser.toJson(clean, {object: true});
             }
             catch (err) {
                 result = err.stack;
