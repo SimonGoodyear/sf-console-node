@@ -27,7 +27,25 @@ io.sockets.on('connection', function (socket) {
 });
 
 var parser = new xml2js.Parser();
-
+parser.addListener('end', function(result){
+                		//console.log(sys.inspect(result));
+                		//console.log(result.soapenvBody);
+                		//console.log(result.soapenvBody.notifications);
+                		//console.log(result.soapenvBody.notifications.OrganizationId);
+                		//console.log(result.soapenvBody.notifications);
+                		
+                		if(result.soapenvBody.notifications.Notification instanceof Array){
+                			console.log(result.soapenvBody.notifications.Notification.length);
+                			for( i = 0; i < result.soapenvBody.notifications.Notification.length; i++){
+                				console.log(result.soapenvBody.notifications.Notification[i].sObject.sfMessage__c);
+                				}
+                		} else{
+                			console.log(result.soapenvBody.notifications.Notification.sObject.sfMessage__c);
+                		}
+                		
+                		
+                	});
+                	
 function HttpHandler(req,res){
 
 	if(req.url != '/notificationservice.asmx' )
@@ -70,24 +88,7 @@ function HttpHandler(req,res){
 	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','').trim();
 	            	//console.log(clean);
                 
-            	parser.addListener('end', function(result){
-                		//console.log(sys.inspect(result));
-                		//console.log(result.soapenvBody);
-                		//console.log(result.soapenvBody.notifications);
-                		//console.log(result.soapenvBody.notifications.OrganizationId);
-                		//console.log(result.soapenvBody.notifications);
-                		
-                		if(result.soapenvBody.notifications.Notification instanceof Array){
-                			console.log(result.soapenvBody.notifications.Notification.length);
-                			for( i = 0; i < result.soapenvBody.notifications.Notification.length; i++){
-                				console.log(result.soapenvBody.notifications.Notification[i].sObject.sfMessage__c);
-                				}
-                		} else{
-                			console.log(result.soapenvBody.notifications.Notification.sObject.sfMessage__c);
-                		}
-                		
-                		
-                	});
+            	
                 parser.parseString(clean);
                 }
             catch (err) {
