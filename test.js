@@ -75,7 +75,7 @@ function HttpHandler(req,res){
                 		//console.log(result.soapenvBody);
                 		//console.log(result.soapenvBody.notifications);
                 		console.log(result.soapenvBody.notifications.OrganizationId);
-                		console.log(result.soapenvBody.notifications);
+                		//console.log(result.soapenvBody.notifications);
                 		
                 		if(result.soapenvBody.notifications.Notification instanceof Array){
                 			for( i = 0; i < result.soapenvBody.notifications.Notification.length; i++)
