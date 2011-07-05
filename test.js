@@ -1,8 +1,5 @@
 var connect = require('connect');
-var xml = require('fs').readFileSync('server.wsdl', 'utf8');
 var server = connect.createServer( connect.profiler(), connect.cookieParser(), connect.static( __dirname ), HttpHandler);
-
-var soap = require('soap');
 
 var io = require('socket.io').listen(server);
 io.configure('production', function(){
@@ -19,8 +16,6 @@ io.configure('production', function(){
 });
 
 server.listen(process.env.PORT);
-
-soap.listen(server, '/notificationservice.asmx2', notificationService, xml);
 
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
