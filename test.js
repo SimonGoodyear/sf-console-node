@@ -26,7 +26,7 @@ io.sockets.on('connection', function (socket) {
 
 function HttpHandler(req,res){
 
-	if(req.url != '/notificationservice.asmx2' )
+	if(req.url != '/notificationservice.asmx' )
 		res.end('not today');
 
 
