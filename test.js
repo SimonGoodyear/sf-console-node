@@ -81,7 +81,7 @@ function HttpHandler(req,res){
                 			console.log(result.soapenvBody.notifications.Notification.length);
                 			for( i = 0; i < result.soapenvBody.notifications.Notification.length; i++){
                 				console.log(result.soapenvBody.notifications.Notification[i]);
-                				console.log(result.soapenvBody.notifications.Notification[i].sObject);
+                				console.log(result.soapenvBody.notifications.Notification[i].sObject.sfMessage__c);
                 				}
                 		} else{
                 			console.log(result.soapenvBody.notifications.Notification.sObject.sfMessage__c);
