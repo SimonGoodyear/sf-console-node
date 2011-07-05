@@ -1,4 +1,4 @@
-var parser = require('xml2json2');
+var parser = require('xml2json');
 var connect = require('connect');
 var server = connect.createServer( connect.profiler(), connect.cookieParser(), connect.static( __dirname ), HttpHandler);
 
