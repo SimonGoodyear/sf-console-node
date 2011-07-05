@@ -76,7 +76,15 @@ function HttpHandler(req,res){
                 		//console.log(result.soapenvBody.notifications);
                 		console.log(result.soapenvBody.notifications.OrganizationId);
                 		console.log(result.soapenvBody.notifications);
-                		console.log(result.soapenvBody.notifications.Notification[0].sObject.sfId);
+                		
+                		if(result.soapenvBody.notifications.Notification instanceof Array){
+                			for( i = 0; i < result.soapenvBody.notifications.Notification.length; i++)
+                				console.log(result.soapenvBody.notifications.Notification[i].sObject.sfMessage__c);
+                		} else{
+                			console.log(result.soapenvBody.notifications.Notification.sObject.sfMessage__c);
+                		}
+                		
+                		
                 	});
                 parser.parseString(clean);
                 }
