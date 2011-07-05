@@ -52,18 +52,18 @@ function HttpHandler(req,res){
         req.on('end', function() {
             var xml = chunks.join(''), result;
             try { 
-	            clean = xml.replace(/<soapenv:Envelope /g, '<soapenvEnvelope ')
-							.replace(/<\/soapenv:Envelope>/g, '</soapenvEnvelope>')
+	            clean = xml.replace('<soapenv:Envelope ', '<soapenvEnvelope ')
+							.replace('</soapenv:Envelope>', '</soapenvEnvelope>')
 							.replace(/ xmlns:soapenv="/g, ' xmlnssoapenv="')
 	            			.replace(/ xmlns:xsd="/g, ' xmlnsxsd="')
 	            			.replace(/ xmlns:xsi="/g, ' xmlnsxsi="')
 	            			.replace(/ xsi:type="/g, ' xsitype="') 
 	            			.replace(/ xmlns:sf="/g, ' xmlnssf="')
 	            			.replace(/ xsi:nil="/g, ' xsinil="')	            			
-	            			.replace(/<soapenv:Body>/g, '<soapenvBody>')
+	            			.replace('<soapenv:Body>', '<soapenvBody>')
 	            			.replace(/<sf:Id>/g, '<sfId>')
 	            			.replace(/<sf:Message__c>/g, '<sfMessage__c>')
-	            			.replace(/<sf:Updated__c>/g, '<sfUpdated__c>')	            			.replace(/<\/soapenv:Body>/g, '</soapenvBody>')
+	            			.replace(/<sf:Updated__c>/g, '<sfUpdated__c>')	            			.replace('</soapenv:Body>', '</soapenvBody>')
 	            			.replace(/<\/sf:Id>/g, '</sfId>')
 	            			.replace(/<\/sf:Message__c>/g, '</sfMessage__c>')
 	            			.replace(/<\/sf:Updated__c>/g, '</sfUpdated__c>')
