@@ -1,4 +1,4 @@
-var sml2js = require('xml2js');
+
 var connect = require('connect');
 var server = connect.createServer( connect.profiler(), connect.cookieParser(), connect.static( __dirname ), HttpHandler);
 
@@ -25,7 +25,7 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-var parser = new aml2js.Parser();
+var parser = new xml2js.Parser();
 
 function HttpHandler(req,res){
 
