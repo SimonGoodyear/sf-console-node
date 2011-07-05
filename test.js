@@ -49,8 +49,9 @@ function HttpHandler(req,res){
         req.on('end', function() {
             var xml = chunks.join(''), result;
             try {
-	            result = xml.replace('<soapenv:Envelope ', 'soapenvEnvelope ')
-	            			.replace(' xmlns:soapenv="', ' xmlnssoapenv="')
+	            result = xml.replace('<soapenv:Envelope ', '<soapenvEnvelope ')
+							.replace('</soapenv:Envelope> ', '</soapenvEnvelope>')
+							.replace(' xmlns:soapenv="', ' xmlnssoapenv="')
 	            			.replace(' xmlns:xsd="', ' xmlnsxsd="')
 	            			.replace(' xmlns:xsi="', ' xmlnsxsi="')
 	            			.replace(' xsi:type="', ' xsitype="') 
