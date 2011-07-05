@@ -66,7 +66,7 @@ function HttpHandler(req,res){
 	            			.replace('</sf:Updated__c>', '</sfUpdated__c>')
 	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','');
 	            			
-                result = parser.toJson2(clean);
+                ///result = parser.toJson2(clean);
                 obj = parser.toJson2(clean, {object: true});
             }
             catch (err) {
