@@ -51,7 +51,7 @@ function HttpHandler(req,res){
         })
         req.on('end', function() {
             var xml = chunks.join(''), result;
-            try { xml ='<sf:Message__c>ss</sf:Message__c>';
+            try { 
 	            clean = xml.replace(/<soapenv:Envelope /, '<soapenvEnvelope ')
 							.replace(/<\/soapenv:Envelope>/, '</soapenvEnvelope>')
 							.replace(/ xmlns:soapenv="/, ' xmlnssoapenv="')
@@ -68,9 +68,9 @@ function HttpHandler(req,res){
 	            			.replace(/<\/sf:Message__c>/, '</sfMessage__c>')
 	            			.replace(/<\/sf:Updated__c>/, '</sfUpdated__c>')
 	            			.replace(/<?xml version="1.0" encoding="UTF-8"?>/,'');
-	            			console.log('************ ' + clean );
+	            	console.log('************ ' + clean );
                 ///result = parser.toJson2(clean);
-                parser.addListener('end', function(result){
+               // parser.addListener('end', function(result){
                 		//console.log(sys.inspect(result));
                 		//console.log(result.soapenvBody);
                 		//console.log(result.soapenvBody.notifications);
