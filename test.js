@@ -74,7 +74,7 @@ function HttpHandler(req,res){
                 console.log('err:   ' + result);
             }
             console.log('obj: ' + obj);
-            console.log('val1: ' + obj.length);
+            console.log('val1: ' + obj);
 			console.log(result);
             //res.write(result);
             res.end();
