@@ -31,22 +31,47 @@ io.sockets.on('connection', function (socket) {
 
 function HttpHandler(req,res){
 
+	if(req.url != '/notificationservice.asmx2' )
+		res.end('not today');
 
-	res.writeHead( 200, {
-    	'Content-Type': 'text/plain'
-  	});
 
-	console.log(req.body);	
-	res.end();
+	if (req.method === 'GET') {
+        var search = url.parse(req.url).search;
+        if (search && search.toLowerCase() === '?wsdl') {
+            //res.setHeader("Content-Type", "application/xml");
+            //res.write(self.wsdl.toXML());
+            res.write('hello GET');
+        }
+        res.end();
+    }
+    else if (req.method === 'POST') {
+        var chunks = [], gunzip;
+        if (compress && req.headers["content-encoding"] == "gzip") {
+    	    gunzip = new compress.Gunzip;    
+            gunzip.init();
+        }
+        req.on('data', function(chunk) {
+            if (gunzip) chunk = gunzip.inflate(chunk, "binary");
+            chunks.push(chunk);
+        })
+        req.on('end', function() {
+            var xml = chunks.join(''), result;
+            if (gunzip) {
+                gunzip.end();
+                gunzip = null
+            }
+            try {
+                //result = self._process(xml);                
+            }
+            catch (err) {
+                result = err.stack;
+            }
+            res.write(result);
+            res.end();
+        });
+    }
+    else {
+        res.end();
+    }    
 }
 
-var notificationService = {
-	NotificationService: {
-		Notification: {
-			notifications: function(args){
-				console.log('in function');
-				return 'ack: true';
-			}
-		}
-	}
-}
