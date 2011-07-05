@@ -40,23 +40,14 @@ function HttpHandler(req,res){
         res.end();
     }
     else if (req.method === 'POST') {
-        var chunks = [], gunzip;
-        if (compress && req.headers["content-encoding"] == "gzip") {
-    	    gunzip = new compress.Gunzip;    
-            gunzip.init();
-        }
+        var chunks = [];
         req.on('data', function(chunk) {
-            if (gunzip) chunk = gunzip.inflate(chunk, "binary");
             chunks.push(chunk);
         })
         req.on('end', function() {
             var xml = chunks.join(''), result;
-            if (gunzip) {
-                gunzip.end();
-                gunzip = null
-            }
             try {
-                //result = self._process(xml);                
+                result = result;        
             }
             catch (err) {
                 result = err.stack;
