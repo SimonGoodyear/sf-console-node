@@ -20,7 +20,7 @@ io.configure('production', function(){
 
 server.listen(process.env.PORT);
 
-soap.listen(server, '/notificationservice.asmx', notificationService, xml);
+soap.listen(server, '/notificationservice.asmx2', notificationService, xml);
 
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
