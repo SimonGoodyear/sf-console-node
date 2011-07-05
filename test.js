@@ -55,8 +55,10 @@ function HttpHandler(req,res){
             }
             catch (err) {
                 result = err.stack;
+                console.log(result);
             }
             console.log('obj:  ' + obj);
+
             res.write(result);
             res.end();
         });
