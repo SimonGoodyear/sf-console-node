@@ -1,5 +1,4 @@
-var sys = require('sys');
-var xml2js = require('./lib/xml2js');
+var xml2js = require('xml2js');
 var connect = require('connect');
 var server = connect.createServer( connect.profiler(), connect.cookieParser(), connect.static( __dirname ), HttpHandler);
 
@@ -28,14 +27,8 @@ io.sockets.on('connection', function (socket) {
 
 var parser = new xml2js.Parser();
 parser.addListener('end', function(result){
-                		//console.log(sys.inspect(result));
-                		//console.log(result.soapenvBody);
-                		//console.log(result.soapenvBody.notifications);
-                		//console.log(result.soapenvBody.notifications.OrganizationId);
-                		//console.log(result.soapenvBody.notifications);
                 		
                 		if(result.soapenvBody.notifications.Notification instanceof Array){
-                			console.log(result.soapenvBody.notifications.Notification.length);
                 			for( i = 0; i < result.soapenvBody.notifications.Notification.length; i++){
                 				console.log(result.soapenvBody.notifications.Notification[i].sObject.sfMessage__c);
                 				}
