@@ -58,8 +58,9 @@ function HttpHandler(req,res){
 	            			.replace(' xsi:nil="', ' xsinil="')	            			
 	            			.replace('soapenv:Body>', 'soapenvBody>')
 	            			.replace('sf:Id>', 'sfId>')
-	            			.replace('sf:Message__c>', 'sf:Message__c>')
-	            			.replace('sf:Updated__c>', 'sf:Updated__c>');
+	            			.replace('sf:Message__c>', 'sfMessage__c>')
+	            			.replace('sf:Updated__c>', 'sfUpdated__c>')
+	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','');
 	            			
                // result = parser.toJson(xml);
                // obj = parser.toJson(xml, {object: true});
