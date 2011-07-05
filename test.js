@@ -56,7 +56,7 @@ function HttpHandler(req,res){
             catch (err) {
                 result = err.stack;
             }
-            console.log(obj.soapEnvelope);
+            //console.log(obj.soapEnvelope);
             res.write(result);
             res.end();
         });
