@@ -49,7 +49,18 @@ function HttpHandler(req,res){
         req.on('end', function() {
             var xml = chunks.join(''), result;
             try {
-	            result = xml.replace('soapenv:Envelope', 'soapenvEnvelope');
+	            result = xml.replace('<soapenv:Envelope ', '<soapenvEnvelope ')
+	            			.replace(' xmlns:soapenv="', ' xmlnssoapenv="')
+	            			.replace(' xmlns:xsd="', ' xmlnsxsd="')
+	            			.replace(' xmlns:xsi="', ' xmlnsxsi="')
+	            			.replace(' xsi:type="', ' xsitype="') 
+	            			.replace(' xmlns:sf="', ' xmlnssf="')
+	            			.replace(' xsi:nil="', ' xsinil="')	            			
+	            			.replace('soapenv:Body>', 'soapenvBody>')
+	            			.replace('sf:Id>', 'sfId>')
+	            			.replace('sf:Message__c>', 'sf:Message__c>')
+	            			.replace('sf:Updated__c>', 'sf:Updated__c>');
+	            			
                // result = parser.toJson(xml);
                // obj = parser.toJson(xml, {object: true});
             }
