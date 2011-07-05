@@ -68,9 +68,9 @@ function HttpHandler(req,res){
 	            			.replace(/<\/sf:Message__c>/g, '</sfMessage__c>')
 	            			.replace(/<\/sf:Updated__c>/g, '</sfUpdated__c>')
 	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','');
-	            	console.log('************ ' + clean );
-                ///result = parser.toJson2(clean);
-               /* parser.addListener('end', function(result){
+	            	
+                
+            	parser.addListener('end', function(result){
                 		//console.log(sys.inspect(result));
                 		//console.log(result.soapenvBody);
                 		//console.log(result.soapenvBody.notifications);
@@ -88,8 +88,8 @@ function HttpHandler(req,res){
                 		}
                 		
                 		
-                	});*/
-                //parser.parseString(xml);
+                	});
+                parser.parseString(xml);
                 }
             catch (err) {
                 result = err.stack;
