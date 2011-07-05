@@ -49,9 +49,9 @@ function HttpHandler(req,res){
         req.on('end', function() {
             var xml = chunks.join(''), result;
             try {
-	            xml = xml.replace('soapenv:Envelope', 'soapenvEnvelope');
-                result = parser.toJson(xml);
-                obj = parser.toJson(xml, {object: true});
+	            result = xml.replace('soapenv:Envelope', 'soapenvEnvelope');
+               // result = parser.toJson(xml);
+               // obj = parser.toJson(xml, {object: true});
             }
             catch (err) {
                 result = err.stack;
