@@ -50,7 +50,7 @@ function HttpHandler(req,res){
             var xml = chunks.join(''), result;
             try {
 	            result = xml.replace('<soapenv:Envelope ', '<soapenvEnvelope ')
-							.replace('</soapenv:Envelope> ', '</soapenvEnvelope>')
+							.replace('</soapenv:Envelope>', '</soapenvEnvelope>')
 							.replace(' xmlns:soapenv="', ' xmlnssoapenv="')
 	            			.replace(' xmlns:xsd="', ' xmlnsxsd="')
 	            			.replace(' xmlns:xsi="', ' xmlnsxsi="')
