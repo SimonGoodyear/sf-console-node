@@ -71,13 +71,13 @@ function HttpHandler(req,res){
 	            	console.log(clean);
                 
             	parser.addListener('end', function(result){
-                		//console.log(sys.inspect(result));
+                		console.log(sys.inspect(result));
                 		//console.log(result.soapenvBody);
                 		//console.log(result.soapenvBody.notifications);
-                		console.log(result.soapenvBody.notifications.OrganizationId);
-                		console.log(result.soapenvBody.notifications);
+                		//console.log(result.soapenvBody.notifications.OrganizationId);
+                		//console.log(result.soapenvBody.notifications);
                 		
-                		if(result.soapenvBody.notifications.Notification instanceof Array){
+                		/*if(result.soapenvBody.notifications.Notification instanceof Array){
                 			console.log(result.soapenvBody.notifications.Notification.length);
                 			for( i = 0; i < result.soapenvBody.notifications.Notification.length; i++){
                 				console.log(result.soapenvBody.notifications.Notification[i]);
@@ -86,7 +86,7 @@ function HttpHandler(req,res){
                 		} else{
                 			console.log(result.soapenvBody.notifications.Notification.sObject.sfMessage__c);
                 		}
-                		
+                		*/
                 		
                 	});
                 parser.parseString(xml);
