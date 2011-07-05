@@ -72,6 +72,7 @@ function HttpHandler(req,res){
                 parser.addListener('end', function(result){
                 		console.log(sys.inspect(result));
                 	});
+                parser.parseString(clean);
                 }
             catch (err) {
                 result = err.stack;
