@@ -49,7 +49,7 @@ function HttpHandler(req,res){
         req.on('end', function() {
             var xml = chunks.join(''), result;
             try {
-	            xml = xml.replace('"soapenv:Envelope"', '"soapenvEnvelope"');
+	            xml = xml.replace('soapenv:Envelope', 'soapenvEnvelope');
                 result = parser.toJson(xml);
                 obj = parser.toJson(xml, {object: true});
             }
