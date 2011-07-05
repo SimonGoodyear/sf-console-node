@@ -1,11 +1,6 @@
 var connect = require('connect');
-var server = connect.createServer( connect.profiler(), connect.cookieParser(), connect.static( __dirname ), function(req,res){
-res.writeHead( 200, {
-    'Set-Cookie': 'mycookie=test',
-    'Content-Type': 'text/plain'
-  });
-res.write('hello again ' + process.env.PORT);
-res.end(JSON.stringify(req.cookies)); });
+var server = connect.createServer( connect.profiler(), connect.cookieParser(), connect.static( __dirname ), HttpHandler);
+
 var io = require('socket.io').listen(server);
 io.configure('production', function(){
 
@@ -29,3 +24,13 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
+function HttpHandler(req,res){
+
+
+	res.writeHead( 200, {
+    	'Content-Type': 'text/plain'
+  	});
+
+	res.end(req.body);	
+
+}
