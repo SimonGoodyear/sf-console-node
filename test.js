@@ -1,4 +1,4 @@
-var sys = requires('sys');
+var sys = require('sys');
 var xml2js = require('./lib/xml2js');
 var connect = require('connect');
 var server = connect.createServer( connect.profiler(), connect.cookieParser(), connect.static( __dirname ), HttpHandler);
