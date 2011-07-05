@@ -1,4 +1,4 @@
-var parser = require('xml2json');
+var parser = require('xml2json2');
 var connect = require('connect');
 var server = connect.createServer( connect.profiler(), connect.cookieParser(), connect.static( __dirname ), HttpHandler);
 
@@ -66,8 +66,8 @@ function HttpHandler(req,res){
 	            			.replace('</sf:Updated__c>', '</sfUpdated__c>')
 	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','');
 	            			
-                result = parser.toJson(clean);
-                obj = parser.toJson(clean, {object: true});
+                result = parser.toJson2(clean);
+                obj = parser.toJson2(clean, {object: true});
             }
             catch (err) {
                 result = err.stack;

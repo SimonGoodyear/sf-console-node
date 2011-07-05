@@ -70,7 +70,7 @@ parser.on('startElement', startElement);
 parser.on('text', text);
 parser.on('endElement', endElement);
 
-module.exports.toJson = function(xml, _options) {
+module.exports.toJson2 = function(xml, _options) {
     options = null;
     options = {
         object: false,
