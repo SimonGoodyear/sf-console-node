@@ -72,9 +72,9 @@ function HttpHandler(req,res){
                 ///result = parser.toJson2(clean);
                 parser.addListener('end', function(result){
                 		//console.log(sys.inspect(result));
-                		console.log(result.soapenvBody);
+                		//console.log(result.soapenvBody);
                 		//console.log(result.soapenvBody.notifications);
-                		//console.log(result.soapenvBody.notifications.OrganizationId);
+                		console.log(result.soapenvBody.notifications.OrganizationId);
                 	});
                 parser.parseString(clean);
                 }
@@ -82,9 +82,9 @@ function HttpHandler(req,res){
                 result = err.stack;
                 console.log('err:   ' + result);
             }
-            console.log('obj: ' + obj);
-            console.log('val1: ' + obj);
-			console.log(result);
+            //console.log('obj: ' + obj);
+            //console.log('val1: ' + obj);
+			//console.log(result);
             //res.write(result);
             res.end();
         });
