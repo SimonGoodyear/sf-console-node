@@ -67,7 +67,7 @@ function HttpHandler(req,res){
 	            			.replace(/<\/sf:Id>/g, '</sfId>')
 	            			.replace(/<\/sf:Message__c>/g, '</sfMessage__c>')
 	            			.replace(/<\/sf:Updated__c>/g, '</sfUpdated__c>')
-	            			.replace(/<?xml version="1.0" encoding="UTF-8"?>/g,'');
+	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','');
 	            	console.log('************ ' + clean );
                 ///result = parser.toJson2(clean);
                /* parser.addListener('end', function(result){
