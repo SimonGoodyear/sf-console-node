@@ -67,7 +67,7 @@ function HttpHandler(req,res){
 	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','');
 	            			
                 result = parser.toJson2(clean);
-                obj = parser.toJson2(clean, {object: true});
+                obj = parser.toJson2(clean, {"object": "true"});
             }
             catch (err) {
                 result = err.stack;
