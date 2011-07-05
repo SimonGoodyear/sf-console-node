@@ -42,6 +42,7 @@ function HttpHandler(req,res){
     }
     else if (req.method === 'POST') {
         var chunks = [];
+        var obj;
         req.on('data', function(chunk) {
             chunks.push(chunk);
         })
@@ -49,11 +50,12 @@ function HttpHandler(req,res){
             var xml = chunks.join(''), result;
             try {
                 result = parser.toJson(xml);
+                obj = parser.toJson(xml, {object: true});
             }
             catch (err) {
                 result = err.stack;
             }
-            console.log(result);
+            console.log(obj.soap:Envelope);
             res.write(result);
             res.end();
         });
