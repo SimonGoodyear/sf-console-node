@@ -41,7 +41,7 @@ function HttpHandler(req,res){
         res.end();
     }
     else if (req.method === 'POST') {
-        var chunks = [];
+        var chunks = [], result, clean, obj;
         var obj;
         req.on('data', function(chunk) {
             chunks.push(chunk);
@@ -75,7 +75,7 @@ function HttpHandler(req,res){
             }
             console.log('obj:  ' + obj);
 			console.log(result);
-            res.write(result);
+            //res.write(result);
             res.end();
         });
     }
