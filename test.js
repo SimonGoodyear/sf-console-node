@@ -25,7 +25,7 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-var parser = new xml2js.Parser();
+var parser = new Parser();
 
 function HttpHandler(req,res){
 
