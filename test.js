@@ -9,12 +9,15 @@ res.end(JSON.stringify(req.cookies)); });
 var io = require('socket.io').listen(server);
 io.configure('production', function(){
 
-  io.set('transports', [
-   	'flashsocket'
-  , 'htmlfile'
-  , 'xhr-polling'
-  , 'jsonp-polling'
-  ]);
+	io.enable('browser client minification');  
+	io.enable('browser client etag');          
+	io.set('log level', 1); 
+  	io.set('transports', [
+   		'flashsocket'
+  		, 'htmlfile'
+  		, 'xhr-polling'
+  		, 'jsonp-polling'
+  	]);
 });
 
 server.listen(process.env.PORT);
