@@ -68,10 +68,10 @@ function HttpHandler(req,res){
 	            			.replace(/<\/sf:Message__c>/g, '</sfMessage__c>')
 	            			.replace(/<\/sf:Updated__c>/g, '</sfUpdated__c>')
 	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','').trim();
-	            	console.log(clean);
+	            	//console.log(clean);
                 
             	parser.addListener('end', function(result){
-                		console.log(sys.inspect(result));
+                		//console.log(sys.inspect(result));
                 		//console.log(result.soapenvBody);
                 		//console.log(result.soapenvBody.notifications);
                 		//console.log(result.soapenvBody.notifications.OrganizationId);
