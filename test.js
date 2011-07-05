@@ -47,7 +47,7 @@ function HttpHandler(req,res){
         req.on('end', function() {
             var xml = chunks.join(''), result;
             try {
-                result = result;        
+                result = xml;        
             }
             catch (err) {
                 result = err.stack;
