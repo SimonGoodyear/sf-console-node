@@ -82,7 +82,7 @@
             s[nodeName] = [old];
             return s[nodeName].push(obj);
           }
-        } else {
+        } else { 
           this.resultObject = obj;
           return this.emit("end", this.resultObject);
         }
