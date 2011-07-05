@@ -73,7 +73,7 @@ function HttpHandler(req,res){
                 result = err.stack;
                 console.log('err:   ' + result);
             }
-            console.log('obj:  ' + obj);
+            console.log('obj:  ' + obj.soapenvEnvelope.soapenvBody.OrganizationId);
 			console.log(result);
             //res.write(result);
             res.end();
