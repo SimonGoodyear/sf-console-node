@@ -1,3 +1,4 @@
+var parser = require('xml2json');
 var connect = require('connect');
 var server = connect.createServer( connect.profiler(), connect.cookieParser(), connect.static( __dirname ), HttpHandler);
 
@@ -47,7 +48,7 @@ function HttpHandler(req,res){
         req.on('end', function() {
             var xml = chunks.join(''), result;
             try {
-                result = xml;        
+                result = parser.toJson(xml);
             }
             catch (err) {
                 result = err.stack;
