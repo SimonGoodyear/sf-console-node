@@ -74,7 +74,7 @@ function HttpHandler(req,res){
                 		//console.log(sys.inspect(result));
                 		//console.log(result.soapenvBody);
                 		//console.log(result.soapenvBody.notifications);
-                		console.log(result.soapenvBody.notifications.OrganizationId);
+                		console.log(result.soapenv:Body.notifications.OrganizationId);
                 		console.log(result.soapenvBody.notifications);
                 		
                 		if(result.soapenvBody.notifications.Notification instanceof Array){
@@ -89,7 +89,7 @@ function HttpHandler(req,res){
                 		
                 		
                 	});
-                parser.parseString(clean);
+                parser.parseString(xml);
                 }
             catch (err) {
                 result = err.stack;
