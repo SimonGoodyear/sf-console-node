@@ -1,4 +1,4 @@
-var parser = require('./lib');
+var sml2js = require('xml2js');
 var connect = require('connect');
 var server = connect.createServer( connect.profiler(), connect.cookieParser(), connect.static( __dirname ), HttpHandler);
 
@@ -24,6 +24,8 @@ io.sockets.on('connection', function (socket) {
     console.log(data);
   });
 });
+
+var parser = new aml2js.Parser();
 
 function HttpHandler(req,res){
 
@@ -67,8 +69,10 @@ function HttpHandler(req,res){
 	            			.replace('<?xml version="1.0" encoding="UTF-8"?>','');
 	            			
                 ///result = parser.toJson2(clean);
-                obj = parser.toJson2(clean, {object: true});
-            }
+                parser.addListener('end', function(result){
+                		console.log(sys.inspect(result));
+                	});
+                }
             catch (err) {
                 result = err.stack;
                 console.log('err:   ' + result);
