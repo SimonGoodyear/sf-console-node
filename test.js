@@ -75,8 +75,8 @@ function HttpHandler(req,res){
                 		//console.log(result.soapenvBody);
                 		//console.log(result.soapenvBody.notifications);
                 		console.log(result.soapenvBody.notifications.OrganizationId);
-                		console.log(result.soapenvBody.notifications.Notification);
-                		console.log(result.soapenvBody.notifications.Notification.sObject.sId);
+                		console.log(result.soapenvBody.notifications);
+                		console.log(result.soapenvBody.notifications.Notification.sObject.sfId);
                 	});
                 parser.parseString(clean);
                 }
