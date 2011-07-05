@@ -80,7 +80,7 @@ function HttpHandler(req,res){
                 		if(result.soapenvBody.notifications.Notification instanceof Array){
                 			console.log(result.soapenvBody.notifications.Notification.length);
                 			for( i = 0; i < result.soapenvBody.notifications.Notification.length; i++)
-                				console.log(result.soapenvBody.notifications.Notification[i].sObject.sfMessage__c);
+                				console.log(result.soapenvBody.notifications.Notification[i]);
                 		} else{
                 			console.log(result.soapenvBody.notifications.Notification.sObject.sfMessage__c);
                 		}
