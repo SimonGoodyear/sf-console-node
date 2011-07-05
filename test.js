@@ -74,7 +74,7 @@ function HttpHandler(req,res){
                 console.log('err:   ' + result);
             }
             console.log('obj: ' + obj);
-            console.log('val: ' + obj.soapenvEnvelope.soapenvBody.OrganizationId);
+            console.log('val: ' + obj.soapenvBody.OrganizationId);
 			console.log(result);
             //res.write(result);
             res.end();
