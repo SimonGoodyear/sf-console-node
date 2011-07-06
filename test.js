@@ -42,9 +42,10 @@ parser.addListener('end', function(result){
 function HttpHandler(req,res){
 
 var count = 0;
-	if(req.url != '/notificationservice.asmx' )
+	if(req.url != '/notificationservice.asmx' ){
 		res.end(++count + '');
-
+        return;
+    }
 
 	if (req.method === 'GET') {
         var search = url.parse(req.url).search;
