@@ -1,6 +1,6 @@
 var xml2js = require('xml2js');
 var connect = require('connect');
-var server = connect.createServer( connect.profiler(), connect.cookieParser(), connect.static( __dirname ), HttpHandler);
+var server = connect.createServer( connect.profiler(), connect.cookieParser(), HttpHandler);
 
 var io = require('socket.io').listen(server);
 io.configure('production', function(){
