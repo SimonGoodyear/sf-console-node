@@ -11,4 +11,4 @@ var req = http.request( {host: 'login.salesforce.com', port: 443, path: '/servic
                         
 req.end('<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:partner.soap.sforce.com"><soapenv:Body><urn:login><urn:username>simon.goodyear@sgopus.com</urn:username><urn:password>futa8a129bTRohAw5kxhGu3KdMjsC1t66</urn:password></urn:login></soapenv:Body></soapenv:Envelope>');
 
-*/
+*/ 

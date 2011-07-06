@@ -43,7 +43,7 @@ function HttpHandler(req,res){
 
 var count = 0;
 	if(req.url != '/notificationservice.asmx' )
-		res.end(++count);
+		res.end(++count + '');
 
 
 	if (req.method === 'GET') {
