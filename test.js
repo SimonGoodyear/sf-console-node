@@ -38,12 +38,12 @@ parser.addListener('end', function(result){
                 		
                 		
                 	});
-                	
+       var ocount = 0;         	
 function HttpHandler(req,res){
 
 var count = 0;
 	if(req.url != '/notificationservice.asmx' ){
-		res.end(++count + '');
+		res.end(++count + ' ' + ++ocount);
         return;
     }
 
