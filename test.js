@@ -41,8 +41,9 @@ parser.addListener('end', function(result){
                 	
 function HttpHandler(req,res){
 
+var count = 0;
 	if(req.url != '/notificationservice.asmx' )
-		res.end('not today');
+		res.end(++count);
 
 
 	if (req.method === 'GET') {
