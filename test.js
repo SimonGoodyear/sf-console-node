@@ -1,6 +1,8 @@
 var connect = require('connect');
-var sfParser = require('./lib/sfparser');
-var server = connect.createServer( connect.profiler(), HttpHandler);
+var sfParser = require('./lib/sfparser.js');
+
+// Http handler can override static NO
+var server = connect.createServer( connect.profiler(), connect.static(__dirname), HttpHandler);
 
 var io = require('socket.io').listen(server);
 io.configure('production', function(){
@@ -16,7 +18,7 @@ io.configure('production', function(){
 });
 
 //server.listen(process.env.PORT);
-server.listen(8080);
+server.listen(8081);
 
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
@@ -45,8 +47,8 @@ function HttpHandler(req,res){
         	req.on('end', function() {
             	var xml = chunks.join('');
             	sfParser.parseAuth(xml, function(result){
-            		//do something magical with the output							
-            	});
+            		//do something magical with the output - like sending some messages						
+            	}); 
             	// send ack
             	res.end();
         	});
@@ -54,6 +56,11 @@ function HttpHandler(req,res){
     	else {
         	res.end();
     	}  
+    }
+    
+    if(req.url == '/client2.html'){
+		console.log('hello client');
+		res.end('this is number 2');    
     }
 }
 
