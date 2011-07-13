@@ -42,7 +42,7 @@ io.sockets.on('connection',
 function sendMessage(orgId, message){
 	for( var i=0; i<connections.length; i++ ){
 		if(connections[i].orgid == orgId){
-			connections[i].connection.emit('logupdate', {data: message});
+			connections[i].connection.emit('logupdate', message);
 		}
 	}
 }
