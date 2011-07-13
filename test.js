@@ -61,7 +61,8 @@ function HttpHandler(req,res,next){
             			function(result){
             				//do something magical with the output - like sending some messages		
 //            				console.log(sys.inspect(result.soapenvBody.notifications.OrganizationId));
-            				console.log(sys.inspect(result.soapenvBody.notifications));
+            				console.log(sys.inspect(result.soapenvBody.notifications.Notification.length));
+            				console.log(sys.inspect(result.soapenvBody.notifications.Notification.sfMessage__c));
             			}); 
             		// send ack
             		res.end();
