@@ -76,7 +76,7 @@ function HttpHandler(req,res,next){
 //            				console.log(sys.inspect(result.soapenvBody.notifications.OrganizationId));
             				console.log(sys.inspect(result.soapenvBody.notifications.Notification.length));
             				
-            				if(result.soapenvBoday.notifications.Notification.length == null){
+            				if(result.soapenvBody.notifications.Notification.length == null){
             					// send a message
             					sendMessage(result.soapenvBody.notifications.OrganizationId, result.soapenvBody.notifications.Notification.sfObject.sfMessage__c);
             				} else{
