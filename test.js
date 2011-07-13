@@ -24,8 +24,8 @@ io.configure('production',
   		io.set('transports', ['htmlfile', 'xhr-polling', 'jsonp-polling']);
 	});
 
-//server.listen(process.env.PORT);
-server.listen(8081);
+server.listen(process.env.PORT);
+//server.listen(8081);
 
 io.sockets.on('connection', 
 	function (socket){
@@ -59,7 +59,8 @@ function HttpHandler(req,res,next){
             		var xml = chunks.join('');
             		sfParser.parse(xml, 
             			function(result){
-            				//do something magical with the output - like sending some messages						
+            				//do something magical with the output - like sending some messages		
+            				
             			}); 
             		// send ack
             		res.end();
