@@ -45,7 +45,7 @@ function sendMessage(orgId, message){
 console.log('sending a message ' + orgId);
 	for( var i=0; i<connections.length; i++ ){
 		if(connections[i].orgid == orgId){
-		consoel.log('matching');
+		console.log('matching');
 		console.log(sys.inspect(connections[i].connection));
 			connections[i].connection.emit(message);
 		}
