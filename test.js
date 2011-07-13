@@ -60,7 +60,7 @@ function HttpHandler(req,res,next){
             		sfParser.parse(xml, 
             			function(result){
             				//do something magical with the output - like sending some messages		
-            				
+            				console.log(sys.inspect(result));
             			}); 
             		// send ack
             		res.end();
