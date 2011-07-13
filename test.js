@@ -1,34 +1,43 @@
 var connect = require('connect');
 var sfParser = require('./lib/sfparser.js');
+var sgutil = require('./lib/sgutil.js');
+var pages = require('./lib/pages.js');
+var auth = require('./lib/sfauth.js');
+var sys = require('sys');
+
+var cookieName = 'clientRef';
 
 // Http handler can override static NO
-var server = connect.createServer( connect.profiler(), connect.static(__dirname), HttpHandler);
+var server = connect.createServer(connect.profiler(), connect.cookieParser(), connect.favicon(), connect.bodyParser(), HttpHandler);
+server.use('/static', connect.static(__dirname + '/static'));
+
+var connections = new Array();
+var organizations = new Array();
+
 
 var io = require('socket.io').listen(server);
-io.configure('production', function(){
-
-	io.enable('browser client minification');  
-	io.enable('browser client etag');          
-	io.set('log level', 1); 
-  	io.set('transports', [
-   		 'htmlfile'
-  		, 'xhr-polling'
-  		, 'jsonp-polling'
-  	]);
-});
+io.configure('production', 
+	function(){
+		io.enable('browser client minification');  
+		io.enable('browser client etag');          
+		io.set('log level', 1); 
+  		io.set('transports', ['htmlfile', 'xhr-polling', 'jsonp-polling']);
+	});
 
 //server.listen(process.env.PORT);
 server.listen(8081);
 
-io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
+io.sockets.on('connection', 
+	function (socket){
+		var obj = new Object();
+		obj['orgid'] = socket.handshake.headers.cookie;
+		obj['connection'] = socket;
+		connections.push(obj);
+	});
 
-function HttpHandler(req,res){
+
+function HttpHandler(req,res,next){
+
 	if(req.url == '/notificationservice.asmx' ){
 
 		if (req.method === 'GET') {
@@ -41,26 +50,104 @@ function HttpHandler(req,res){
 			res.end();
     	} else if (req.method === 'POST') {
         	var chunks = [];
-        	req.on('data', function(chunk) {
-            	chunks.push(chunk);
-        	})
-        	req.on('end', function() {
-            	var xml = chunks.join('');
-            	sfParser.parseAuth(xml, function(result){
-            		//do something magical with the output - like sending some messages						
-            	}); 
-            	// send ack
-            	res.end();
-        	});
+        	req.on('data', 
+        		function(chunk) {
+            		chunks.push(chunk);
+        		});
+        	req.on('end', 
+        		function() {
+            		var xml = chunks.join('');
+            		sfParser.parse(xml, 
+            			function(result){
+            				//do something magical with the output - like sending some messages						
+            			}); 
+            		// send ack
+            		res.end();
+        		});
     	}
     	else {
         	res.end();
     	}  
-    }
-    
-    if(req.url == '/client2.html'){
-		console.log('hello client');
-		res.end('this is number 2');    
-    }
+    } else if(req.url == "/"){
+	    if(req.method == 'GET'){
+    		var orgId = getOrgId(req.headers.cookie);
+    		if(orgId == null){
+    			// some response going back to home page
+    			pages.login(function(page){
+					res.writeHead(200, {'Set-Cookie': cookieName + '=', 'Content-Type': 'text/html'});
+    				res.end(page);
+    			});
+    		} else{
+				// return with the main page
+				pages.main(function(page){
+    				res.end(page);
+    			});
+    		}
+    	}
+    	
+    	if(req.method == "POST"){
+    	
+    		auth.login(req.body.username, req.body.password + req.body.token, req.body.type,
+    			function(loginRes){
+    				//success
+					var ret = sfParser.parse(loginRes, function(obj){
+
+						// Save the orgid
+						var organization = new Object();
+						organization.orgId = obj.soapenvBody.loginResponse.result.userInfo.organizationId;
+						organization.cookie = sgutil.guidGenerator() + '-' + new Date().getTime();
+						organizations.push(organization);
+					
+						// Send them to the next page
+						pages.main(function(page){
+						console.log('hello');
+							res.writeHead(200, {'Set-Cookie': cookieName + '=' + organization.cookie, 'Content-Type': 'text/html'});
+    						res.end(page);
+    					});
+					
+					});
+    			},
+    			function(loginRes){
+    				//failure
+    				pages.login(function(page){
+						res.writeHead(200, {'Set-Cookie': cookieName + '=', 'Content-Type': 'text/html'});
+    					res.end(page);
+    				});
+    			});
+    			
+    	
+    	}
+    } else{
+	    next();
+	}
 }
 
+function getOrgId(allCookies){
+
+	if(allCookies == null)
+		return null;
+		
+	var p = allCookies.split(';');
+	var cookie = '';
+	
+	for( var i=0; i<p.length; i++ ){
+		var s = p[i].split('=');
+		if( s.length > 1 && s[0] == cookieName ){
+			cookie = s[1];
+			break;
+		}
+	}
+	
+	if( cookie == '' )
+		return null;
+	
+	var orgId = null;
+	for( var i=0; i<organizations.length; i++){
+		if( organizations[i].cookie == cookie ){
+			orgId = organizations[i].orgId;
+			break;
+		}
+	}
+	
+	return orgId;
+}
