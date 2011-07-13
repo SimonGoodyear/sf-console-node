@@ -30,8 +30,6 @@ server.listen(process.env.PORT);
 io.sockets.on('connection', 
 	function (socket){
 		var obj = new Object();
-		console.log('making a connection');
-		console.log(socket.handshake.headers.cookie);
 		var orgId = getOrgId(socket.handshake.headers.cookie);
 		if( orgId == null )
 			return;
@@ -42,11 +40,8 @@ io.sockets.on('connection',
 	});
 
 function sendMessage(orgId, message){
-console.log('sending a message ' + orgId);
 	for( var i=0; i<connections.length; i++ ){
 		if(connections[i].orgid == orgId){
-		console.log('matching');
-		console.log(sys.inspect(connections[i].connection));
 			connections[i].connection.emit(message);
 		}
 	}
