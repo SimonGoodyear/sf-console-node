@@ -30,6 +30,7 @@ server.listen(process.env.PORT);
 io.sockets.on('connection', 
 	function (socket){
 		var obj = new Object();
+		console.log('making a connection');
 		console.log(socket.handshake.headers.cookie);
 		var orgId = getOrgId(socket.handshake.headers.cookie);
 		if( orgId == null )
@@ -41,7 +42,7 @@ io.sockets.on('connection',
 	});
 
 function sendMessage(orgId, message){
-console.log('sending a message');
+console.log('sending a message ' + orgId);
 	for( var i=0; i<connections.length; i++ ){
 		if(connections[i].orgid == orgId){
 			connections[i].socket.emit(message);
@@ -84,7 +85,7 @@ function HttpHandler(req,res,next){
             				}
             				
             				
-            				console.log(sys.inspect(result.soapenvBody.notifications.Notification.sObject.sfMessage__c));
+            				//console.log(sys.inspect(result.soapenvBody.notifications.Notification.sObject.sfMessage__c));
             			}); 
             		// send ack
             		res.end();
