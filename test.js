@@ -30,11 +30,24 @@ server.listen(process.env.PORT);
 io.sockets.on('connection', 
 	function (socket){
 		var obj = new Object();
-		obj['orgid'] = socket.handshake.headers.cookie;
+		console.log(socket.handshake.headers.cookie);
+		var orgId = getOrgId(socket.handshake.headers.cookie);
+		if( orgId == null )
+			return;
+			
+		obj['orgid'] =  orgId;
 		obj['connection'] = socket;
 		connections.push(obj);
 	});
 
+function sendMessage(orgId, message){
+console.log('sending a message');
+	for( var i=0; i<connections.length; i++ ){
+		if(connections[i].orgid == orgId){
+			connections[i].socket.emit(message);
+		}
+	}
+}
 
 function HttpHandler(req,res,next){
 
@@ -62,6 +75,15 @@ function HttpHandler(req,res,next){
             				//do something magical with the output - like sending some messages		
 //            				console.log(sys.inspect(result.soapenvBody.notifications.OrganizationId));
             				console.log(sys.inspect(result.soapenvBody.notifications.Notification.length));
+            				
+            				if(result.soapenvBoday.notifications.Notification.length == null){
+            					// send a message
+            					sendMessage(result.soapenvBody.notifications.OrganizationId, result.soapenvBody.notifications.Notification.sfObject.sfMessage__c);
+            				} else{
+            					// send many messages
+            				}
+            				
+            				
             				console.log(sys.inspect(result.soapenvBody.notifications.Notification.sObject.sfMessage__c));
             			}); 
             		// send ack
