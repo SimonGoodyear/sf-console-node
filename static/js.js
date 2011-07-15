@@ -43,8 +43,8 @@ $(document).ready(function () {
     });
 
     socket.on('logupdate', function (evt) {
-alert(evt);        //if (paused) return;
-		appendMessage(evt);
+        //if (paused) return;
+		appendLineMessage(evt);
     });
 
     socket.on('disconnect', function () {
