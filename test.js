@@ -31,7 +31,6 @@ io.sockets.on('connection',
 	function (socket){
 		var obj = new Object();
 		var orgId = getOrgId(socket.handshake.headers.cookie);
-		console.log('** '+orgId);
 		if( orgId == null )
 			return;
 			
@@ -77,7 +76,6 @@ function HttpHandler(req,res,next){
             				
             				if(result.soapenvBody.notifications.Notification.length == null){
             					// send a message
-            					console.log('hell');
             					sendMessage(result.soapenvBody.notifications.OrganizationId, result.soapenvBody.notifications.Notification.sObject.sfMessage__c);
             				} else{
             					// send many messages
