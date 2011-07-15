@@ -39,9 +39,9 @@ io.sockets.on('connection',
 		connections.push(obj);
 	});
 
-function sendMessage(orgId, message){
+function sendMessage(orgId, message){console.log(connections.length);
 	for( var i=0; i<connections.length; i++ ){
-		if(connections[i].orgid == orgId){
+		if(connections[i].orgid == orgId){console.log(connections[i].orgid );
 			connections[i].connection.emit('logupdate', message);
 		}
 	}
