@@ -43,7 +43,7 @@ $(document).ready(function () {
     });
 
     socket.on('logupdate', function (evt) {
-        //if (paused) return;
+        if (paused) return;
 		appendLineMessage(evt);
     });
 
