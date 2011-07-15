@@ -70,7 +70,7 @@ function appendLine(line) {
 */
 function appendLineMessage(line) {
 
-    var id = parseInt(line.substr(0, line.indexOf(':'))).valueOf();
+    var id = new Number(line.substr(0, line.indexOf(':'))).valueOf();
     var idx = 0;
     for (idx = lines.length; idx >= 0; idx--) {
         if (lines[idx] < id)
