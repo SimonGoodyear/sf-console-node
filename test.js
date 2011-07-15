@@ -31,6 +31,7 @@ io.sockets.on('connection',
 	function (socket){
 		var obj = new Object();
 		var orgId = getOrgId(socket.handshake.headers.cookie);
+		console.log('** '+orgId);
 		if( orgId == null )
 			return;
 			
