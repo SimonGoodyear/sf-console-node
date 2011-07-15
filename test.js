@@ -76,7 +76,7 @@ function HttpHandler(req,res,next){
             				
             				if(result.soapenvBody.notifications.Notification.length == null){
             					// send a message
-            					sendMessage(result.soapenvBody.notifications.OrganizationId, result.soapenvBody.notifications.Notification.sObject.sfMessage__c);
+            					sendMessage(result.soapenvBody.notifications.OrganizationId, result.soapenvBody.notifications.Notification.sObject.sfUpdated__c + ':' + result.soapenvBody.notifications.Notification.sObject.sfMessage__c);
             				} else{
             					// send many messages
             				}
