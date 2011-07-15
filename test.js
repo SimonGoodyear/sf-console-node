@@ -76,6 +76,7 @@ function HttpHandler(req,res,next){
             				
             				if(result.soapenvBody.notifications.Notification.length == null){
             					// send a message
+            					console.log('hell');
             					sendMessage(result.soapenvBody.notifications.OrganizationId, result.soapenvBody.notifications.Notification.sObject.sfMessage__c);
             				} else{
             					// send many messages
