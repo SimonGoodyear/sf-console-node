@@ -103,6 +103,7 @@ function HttpHandler(req,res,next){
     		} else{
 				// return with the main page
 				pages.main(function(page){
+    				res.writeHead(200, {'Set-Cookie': cookieName + '=', 'Content-Type': 'text/html'});
     				res.end(page);
     			});
     		}
