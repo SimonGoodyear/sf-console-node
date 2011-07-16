@@ -78,7 +78,9 @@ function HttpHandler(req,res,next){
             					// send a message
             					sendMessage(result.soapenvBody.notifications.OrganizationId, result.soapenvBody.notifications.Notification.sObject.sfUpdated__c + ':' + result.soapenvBody.notifications.Notification.sObject.sfMessage__c);
             				} else{
-            					// send many messages
+            					for(var i=0; i<result.soapenvBody.notifications.Notification.length; i++){
+            						sendMessage(result.soapenvBody.notifications.OrganizationId, result.soapenvBody.notifications.Notification[i].sObject.sfUpdated__c + ':' + result.soapenvBody.notifications.Notification[i].sObject.sfMessage__c);
+            					}
             				}
             				
             				
