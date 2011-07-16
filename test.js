@@ -85,7 +85,7 @@ function HttpHandler(req,res,next){
             				//console.log(sys.inspect(result.soapenvBody.notifications.Notification.sObject.sfMessage__c));
             			}); 
             		// send ack
-            		res.end();
+            		res.end('<?xml version = "1.0" encoding = "utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><notifications xmlns="http://soap.sforce.com/2005/09/outbound"><Ack>True</Ack></notifications></soapenv:Body></soapenv:Envelope>');
         		});
     	}
     	else {
