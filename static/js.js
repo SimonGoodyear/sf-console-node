@@ -79,7 +79,7 @@ function appendLineMessage(line) {
 
     var d = new Date(id);
     var msg = pad(d.getDate(), 2) + '/' + pad(d.getMonth() + 1, 2) + '/' + d.getFullYear() + ' ' + pad(d.getHours(), 2) + ':' + pad(d.getMinutes(), 2) + ':' + pad(d.getSeconds(), 2) + '.' + pad(d.getMilliseconds(), 3) + ' - ' + line.substr(line.indexOf(':') + 1);
-
+alert(idx);
     if (idx < 0) {
         $('<p id="' + id + '">' + msg + '</p>').insertBefore('.cursor');
         lines.push(id);
