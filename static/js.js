@@ -62,7 +62,6 @@ $(document).ready(function () {
 */
 function appendLine(line) {
     $('<p id="0">' + line + '</p>').insertBefore('.cursor');
-
     $('html, body').animate({ scrollTop: $(document).height() });
 }
 
