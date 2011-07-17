@@ -32,6 +32,7 @@ b[0] && b[0].ownerDocument || c); var h = [], i; for (var j = 0, k; (k = a[j]) !
 })(window);
 
 var lines = new Array();
+lines.push(0);
 var paused = false;
 
 $(document).ready(function () {
@@ -60,7 +61,7 @@ $(document).ready(function () {
 * Add a new line before the cursor - general line
 */
 function appendLine(line) {
-    $('<p>' + line + '</p>').insertBefore('.cursor');
+    $('<p id="0">' + line + '</p>').insertBefore('.cursor');
 
     $('html, body').animate({ scrollTop: $(document).height() });
 }
