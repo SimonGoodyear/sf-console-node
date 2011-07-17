@@ -71,12 +71,12 @@ function appendLine(line) {
 function appendLineMessage(line) {
 
     var id = new Number(line.substr(0, line.indexOf(':'))).valueOf();
-    var idx = 0; alert(lines.length);
+    var idx = 0; 
     for (idx = lines.length; idx >= 0; idx--) {
         if (lines[idx] < id)
             break;
     }
-
+var x= lines.length;
     var d = new Date(id);
     var msg = pad(d.getDate(), 2) + '/' + pad(d.getMonth() + 1, 2) + '/' + d.getFullYear() + ' ' + pad(d.getHours(), 2) + ':' + pad(d.getMinutes(), 2) + ':' + pad(d.getSeconds(), 2) + '.' + pad(d.getMilliseconds(), 3) + ' - ' + line.substr(line.indexOf(':') + 1);
 
