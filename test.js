@@ -8,7 +8,7 @@ var sys = require('sys');
 var cookieName = 'clientRef';
 
 // Http handler can override static NO
-var server = connect.createServer(connect.profiler(), connect.cookieParser(), connect.favicon(), connect.bodyParser(), HttpHandler);
+var server = connect.createServer(connect.profiler(), connect.cookieParser(), connect.favicon(__dirname + '/favicon.png'), connect.bodyParser(), HttpHandler);
 server.use('/static', connect.static(__dirname + '/static'));
 
 var connections = new Array();
@@ -71,8 +71,6 @@ function HttpHandler(req,res,next){
             		sfParser.parse(xml, 
             			function(result){
             				//do something magical with the output - like sending some messages		
-//            				console.log(sys.inspect(result.soapenvBody.notifications.OrganizationId));
-            				console.log(sys.inspect(result.soapenvBody.notifications.Notification.length));
             				
             				if(result.soapenvBody.notifications.Notification.length == null){
             					// send a message
