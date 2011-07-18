@@ -8,7 +8,7 @@ var sys = require('sys');
 var cookieName = 'clientRef';
 
 // Http handler can override static NO
-var server = connect.createServer(connect.profiler(), connect.cookieParser(), connect.favicon( './favicon.png'), connect.bodyParser(), HttpHandler);
+var server = connect.createServer(connect.profiler(), connect.cookieParser(), connect.favicon( __dirname + '/favicon.png'), connect.bodyParser(), HttpHandler);
 server.use('/static', connect.static(__dirname + '/static'));
 
 var connections = new Array();
