@@ -7,7 +7,7 @@ var sys = require('sys');
 
 var cookieName = 'clientRef';
 
-var server = connect.createServer(connect.profiler(), connect.cookieParser(), connect.favicon( __dirname + '/images/favicon.png'), connect.bodyParser(), HttpHandler);
+var server = connect.createServer(connect.profiler(), connect.cookieParser(), connect.favicon( '/images/favicon.png'), connect.bodyParser(), HttpHandler);
 server.use('/static', connect.static(__dirname + '/static'));
 
 var connections = new Array();
