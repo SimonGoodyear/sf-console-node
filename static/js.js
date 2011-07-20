@@ -37,7 +37,7 @@ var paused = false;
 
 $(document).ready(function () {
 
-	var socket = io.connect('http://simple-autumn-149.herokuapp.com/');
+	var socket = io.connect('http://sfconsole.herokuapp.com/');
 
     socket.on('connect', function (socket) {
         appendLine('* Connection established');
