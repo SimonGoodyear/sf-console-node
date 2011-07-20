@@ -1,1 +1,1 @@
-web: node test.js
+web: node sfconsole.js

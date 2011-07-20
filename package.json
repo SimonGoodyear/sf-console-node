@@ -1,5 +1,5 @@
 {
-  "name": "node-test",
+  "name": "sfconsole",
   "version": "0.0.1",
   "dependencies": {
     "connect": "1.5.1",
