@@ -1,0 +1,153 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+body {
+	font-family: "Courier New",Courier,monospace;
+	font-size: 100%;
+	line-height: 1.5em;
+	background-color: #000;
+	color: #00ff00;
+	margin: 0 2%;
+}
+
+header {
+	border-bottom: solid 2px #333;
+	padding: 10px 0;
+	margin-bottom: 10px 0;
+	position: fixed;
+	width: 96%;
+	background-color: #000;
+}
+
+nav ul {
+	height: 1%;
+	overflow: hidden;	
+}
+
+nav li {
+	float: left;
+	margin-right: 5px;
+	background: #333;
+}
+
+nav a {
+	display: block;
+	padding: 4px 12px;
+	color: #00ff00;
+}
+
+nav a:hover {
+	color: #fff;
+}
+
+#fauxConsole {
+	float: left;
+	clear: left;
+	width: 100%;
+	margin-top: 60px;
+}
+
+p {
+	float: left;
+	clear: left;
+}
+
+.cursor {
+	border-right: solid 1px #00ff00;
+	-webkit-animation: blink 1s infinite alternate;
+	display: block;
+	width: 1px;
+	height: 1.5em;
+}
+
+@-webkit-keyframes blink {
+   0%{ border-right: solid 1px #00ff00; }
+   20%{ border-right: solid 1px #333; }
+   80%{ border-right: solid 1px #333; }
+   100%{ border-right: solid 1px #00ff00; }
+}
+
+form {
+	float: left;
+	clear: left;
+	width: 100%;
+	margin-top: 60px;
+}
+
+label {
+	float: left;
+}
+
+select,
+input {
+	float: left;
+	clear: left;
+}
+
+input {
+	width: 300px;
+}
+
+input[type="submit"]{
+	margin-top: 30px;
+	width: 100px;
+}
+
+form li {
+	float: left;
+	clear: left;
+	margin-bottom: 10px;
+}
+
+h1 {
+	float: left;
+	font-size: 125%;
+	padding: 4px 20px 4px 0;
+}

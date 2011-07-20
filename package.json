@@ -1,0 +1,9 @@
+{
+  "name": "sfconsole",
+  "version": "0.0.1",
+  "dependencies": {
+    "connect": "1.5.1",
+    "socket.io": "0.7.6",
+    "xml2js" : "> 0.1.1"
+  }
+}
