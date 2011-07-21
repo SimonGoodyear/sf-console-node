@@ -37,10 +37,10 @@ var paused = false;
 
 $(document).ready(function () { 
 
-	var socket = io.connect('https://sfconsole.herokuapp.com/', {secure: true});
+	var socket = io.connect('https://sfconsole.herokuapp.com/', {secure:true});
 
     socket.on('connect', function (socket) {
-        appendLine('* Connection established');
+        appendLine('* Connection established.');
     });
 
     socket.on('logupdate', function (evt) {
@@ -49,7 +49,7 @@ $(document).ready(function () {
     });
 
     socket.on('disconnect', function () {
-        appendLine('* Connection lost');
+        appendLine('* Connection lost.');
     });
 
     $('#pause').click(function () { paused = !paused; $(this).text(paused ? 'Resume' : 'Pause'); $('html, body').animate({ scrollTop: $(document).height() }); });
