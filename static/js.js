@@ -37,7 +37,7 @@ var paused = false;
 
 $(document).ready(function () {
 
-	var socket = io.connect(('https:' == document.location.protocol ? 'https://' : 'http://') + 'sfconsole.herokuapp.com/');
+	var socket = io.connect('https://sfconsole.herokuapp.com/', {secure: true});
 
     socket.on('connect', function (socket) {
         appendLine('* Connection established');
