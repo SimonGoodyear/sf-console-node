@@ -35,7 +35,7 @@ var lines = new Array();
 lines.push(0);
 var paused = false;
 
-$(document).ready(function () {
+$(document).ready(function () { 
 
 	var socket = io.connect('https://sfconsole.herokuapp.com/', {secure: true});
 
